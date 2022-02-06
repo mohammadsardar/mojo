@@ -16,7 +16,7 @@ bibliography: references.bib
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
-library(palmerpenguins)
+
 ```
 
 # Introduction
@@ -28,39 +28,55 @@ You can and should cross-reference sections and sub-sections. For instance, Sect
 
 # Data
 
-Our data is of penguins (Figure \@ref(fig:bills)).
+Our data is of toronto homeless shelters (Figure \@ref(fig:bills)).
 
-```{r bills, fig.cap="Bills of penguins", echo = FALSE}
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+```{r}
+#loading in the data
+toronto_shelters_clean <- 
+  read_csv(
+    "cleaned_toronto_shelters.csv")
+
+#creating a new month variable
+toronto_shelters_clean <- toronto_shelters_clean %>% 
+  mutate(occupancy_month = month(occupancy_date, 
+                                 label = TRUE, 
+                                 abbr = FALSE))
+
+#toronto_shelters_clean <- toronto_shelters_clean %>% 
+
+#there is only one province so this wont work
+#toronto_shelters_clean <- toronto_shelters_clean %>% 
+#  mutate(cold_extremelycold = ifelse(location_province == "ON" | location_province =="QC" | location_province =="BC", "cold", "extremely cold"))
+
+toronto_shelters_clean %>% 
+  group_by(occupancy_month)%>%
+  summarise(n = mean(occupied_beds)) %>% 
+  kable()
+
+toronto_shelters_clean %>% group_by(occupancy_month)%>%
+  summarise(n = mean(occupied_beds)) %>% 
+  ggplot(mapping = aes(n, occupancy_month)) +
+  geom_boxplot() +
+  theme_minimal() + # Make the theme neater
+  coord_flip() + # Swap the x and y axis to make parties easier to read
+  labs(x = "average number of beds occupied",
+       y = "Month")
+
 ```
+
 
 Talk more about it.
 
-Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can change the height and width so they don't take the whole page?)
 
-```{r billssssss, fig.cap="More bills of penguins", echo = FALSE, fig.width=8, fig.height=4}
 
-# This needs to be about the random data tha tI sasmpled?
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+```{r}
+
 ```
+
 
 Talk way more about it. 
 
 
-
-# Model
 
 
 # Results

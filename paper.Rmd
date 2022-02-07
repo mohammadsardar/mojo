@@ -37,10 +37,13 @@ You can and should cross-reference sections and sub-sections. For instance, Sect
 
 Our data is of toronto homeless shelters (Figure \@ref(fig:bills)).
 
-```{r}
+```{r, include=FALSE}
 #loading in the data
 cleaned_toronto_shelters <- read_csv("cleaned_toronto_shelters.csv")
 
+```
+
+```{r, echo=FALSE}
 #creating a new month variable
 toronto_shelters_clean <- cleaned_toronto_shelters %>% 
   mutate(occupancy_month = month(occupancy_date, 
@@ -75,21 +78,19 @@ Talk more about it.
 
 
 
-```{r}
-#making a table for another summary statistic.
 
-onecleaned_toronto_shelters <- read_csv("bedscleaned_toronto_shelters.csv")
 
-onetoronto_shelters_clean %>% 
+```{r, echo=FALSE}
+
+toronto_shelters_clean %>% 
   group_by(occupancy_month)%>%
   summarise(n = mean(capacity_actual_bed)) %>% 
-  kable(caption = "Number if available beds ", 
+  kable(caption = "Rate of Homeless shelter usage in Toronto in 2021", 
         col.names = c("Month", "Average Proportion of beds available that were occupied"),
         digits = 1,
         booktabs = TRUE,
         linesep = ""
   )
-
 ```
 
 

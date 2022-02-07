@@ -18,15 +18,15 @@ toronto_shelters_clean <- toronto_shelters_clean %>%
                                  label = TRUE, 
                                  abbr = FALSE))
   
-#toronto_shelters_clean <- toronto_shelters_clean %>% 
- # mutate(occupancy_year = year(occupancy_date, 
-  #                               label = TRUE, 
-   #                              abbr = FALSE))
+toronto_shelters_clean <- toronto_shelters_clean %>% 
+  mutate(occupancy_year = year(occupancy_date, 
+                                 label = TRUE, 
+                                 abbr = FALSE))
 
-#toronto_shelters_clean$occupancy_year <- year(toronto_shelters_clean$occupancy_date)
+toronto_shelters_clean$occupancy_year <- year(toronto_shelters_clean$occupancy_date)
 
 #there is only one year for all the data though.
 
-#toronto_shelters_clean %>% group_by(location_province) %>% 
- # summarise(sum(occupied_beds))
+toronto_shelters_clean %>% group_by(location_province) %>% 
+  summarise(sum(occupied_beds))
 

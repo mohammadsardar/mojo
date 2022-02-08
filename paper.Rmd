@@ -29,13 +29,13 @@ library(haven)
 # Introduction
 
 This paper was made using @citeR
-You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
+ 
 
 
 
 # Data
 
-Our data is of toronto homeless shelters (Figure \@ref(fig:bills)).
+Our data is of homeless shelters in Toronto
 
 ```{r, include=FALSE}
 #loading in the data
@@ -69,7 +69,7 @@ toronto_shelters_clean %>% group_by(occupancy_month)%>%
   coord_flip() + # Swap the x and y axis to make parties easier to read
   labs(x = "average number of beds occupied",
        y = "Month",
-       title = "Monthly Average number of homeless shelter beds occupied ")
+       caption =  "Monthly Average number of homeless shelter beds occupied")
 
 ```
 
@@ -85,8 +85,8 @@ Talk more about it.
 toronto_shelters_clean %>% 
   group_by(occupancy_month)%>%
   summarise(n = mean(capacity_actual_bed)) %>% 
-  kable(caption = "Rate of Homeless shelter usage in Toronto in 2021", 
-        col.names = c("Month", "Average Proportion of beds available that were occupied"),
+  kable(caption = "Average number of Available Beds in Homeless shelters in 2021", 
+        col.names = c("Month", "Average number of available beds"),
         digits = 1,
         booktabs = TRUE,
         linesep = ""

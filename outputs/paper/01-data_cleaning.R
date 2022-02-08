@@ -45,7 +45,7 @@ head(toronto_shelters)
 toronto_shelters$OCCUPANCY_DATE <- ymd(toronto_shelters$OCCUPANCY_DATE)
 toronto_shelters_clean <- 
   clean_names(toronto_shelters) %>% 
-  select(occupancy_date, id, occupied_beds, location_province, occupancy_rate_beds) 
+  select(occupancy_date, id, occupied_beds, location_province, occupancy_rate_beds, capacity_actual_bed) 
 head(toronto_shelters_clean)
 
 toronto_shelters_clean <- toronto_shelters_clean %>% 
@@ -54,6 +54,8 @@ head(toronto_shelters_clean)
 
 toronto_shelters_clean$occupied_beds <- as.numeric(toronto_shelters_clean$occupied_beds)
 toronto_shelters_clean$occupancy_rate_beds <- as.numeric(toronto_shelters_clean$occupancy_rate_beds)
+toronto_shelters_clean$capacity_actual_bed <- as.numeric(toronto_shelters_clean$capacity_actual_bed)
+
 
 head(toronto_shelters_clean)
 

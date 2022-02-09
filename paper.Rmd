@@ -1,11 +1,11 @@
 ---
-title: "This had better work or imma start crying fam hee haww"
-subtitle: "No cap imma start crying homes"
+title: "Toronto Homeless Shelters Average daily usage"
+subtitle: "Finding if the homeless shelters average daily usage changes by months"
 author: 
   - Mohammad Sardar Sheikh
 thanks: "Code and data are available at: https://github.com/mohammadsardar/mojo "
 date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "We would like to know whether the shelter usage in toronto remains constant throughout the year, or there are fluctuations in average number of beds occupied over different months. I took data available from open data toronto regarding homeless shelters in toronto and created a new 'month' variable. using this variable, i calculated monthly average beds occupied for the homeless shelters around toronto. the results show that the highest number of beds occupied are during the cold months, with the absolute highest being in december, and the lowest number taking place in April. We also get that the average beds available, the shelter capacity, decreases during the summer montha. We cant be sure whether the increased usage of beds in the winter months is solely due to the weather getting colder, or due to the actual shelter capacity increasing. "
 output:
   bookdown::pdf_document2
 toc: FALSE
@@ -28,8 +28,12 @@ library(haven)
 
 # Introduction
 
-This paper was made using @citeR
- 
+This paper was made using @citeR. There is a large population of homeless people in toronto and these people have nowhere to go at night to gain warmth from the cold. Luckily (or unluckily for them), the government has set up many homeless shelters all over the city to serve these people.
+
+Toronto has a very diverse climate and temperature range throughout the year. while the summer is short and pleasant, the winter is much longer and very hostile to everyone that doesn't take shelter from the raging winds and the bitter cold. the purpose of this study is to find out whether there is an increase in the shelter usage for the winter months or if the shelter occupancy remains constant throughout the year.
+
+We firstly read in our data using Readr and we make the variable names easier to work with using janitor. we then manipulate the dataset using dplyr and lubridate to convert dates and make it so that we can use them properly. We are only interested in the average number of beds occupies per month and so we create a new 'month' variable. we then find the averages for each month and check whether there is a specific trend. we can see from the graph that the average shelter usage decreases during the summer months and then increases as it starts to get colder in the winter.   
+we can also see from the table that while there is a decrease in the shelter usage during the summer months, we cant contribute this decrease solely to the weather getting warmer. we can also see that the shelter capacity, the average number of beds that are available, also decrease during the summer months and similarly, shelter capacity increases during the winter months. what we need to figure out is whether this decrease in shelter usage is solely due to the increase in temperature, or whether this inherent decrease in capacity has anything to do with it as well.
 
 
 
@@ -74,8 +78,10 @@ toronto_shelters_clean %>% group_by(occupancy_month)%>%
 ```
 
 
-Talk more about it.
+In the figure above, we can see that the monthly average homeless shelter beds that are occupied starts to increase in May, and keeps increasing until December, telling us that the shelters are more popular when it is colder.
 
+
+However, we can see from the table that the average number of available beds for the homeless also decreases during the summer months and this raises another question. Do the shelters around toronto automatically reduce their capacity during the summer months, and does this reduction in capacity make it so that there are some homeless people that dont get a bed when they need it.
 
 
 
@@ -92,42 +98,11 @@ toronto_shelters_clean %>%
         linesep = ""
   )
 ```
-
-
-Talk way more about it. 
-
+There are some ethical issues with the data that we have. Shelters are run by the government and as such they are funded by the government. The more homeless people that use a shelter, the greater its funding. Because of this, there may be incentives for people to misrepresent the actual numbers, to inflate them, in hopes of recieving greater grants which they can use elsewhere instead of for the actual shelter.
 
 
 
-# Results
-
-# Discussion
-
-## First discussion point
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
-## Second discussion point
-
-## Third discussion point
-
-## Weaknesses and next steps
-
-Weaknesses and next steps should also be included.
-
-\newpage
-
-\appendix
-
-# Appendix {-}
 
 
-# Additional details
-
-
-\newpage
-
-
-# References
 
 
